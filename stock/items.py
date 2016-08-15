@@ -12,7 +12,9 @@ class StockItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     code = scrapy.Field()
-    name = scrapy.Field()
-    price = scrapy.Field()
     date = scrapy.Field()
+    final_price = scrapy.Field()
+    highest_price = scrapy.Field()
+    lowest_price = scrapy.Field()
+    trading_volume = scrapy.Field()
     pass
