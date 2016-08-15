@@ -12,6 +12,8 @@ class stockSpider(scrapy.Spider):
 
     def parse(self, response):
         last_index = int(response.xpath('//td/a/@href').extract()[-1].split("=")[-1])
+        #TODO : if total page number is under 11?(no last_index)
+        #TODO : Can we use url join?
         url = "http://finance.naver.com/item/sise_day.nhn?code=002900"
         for i in range(1, last_index + 1) :
             yield scrapy.Request(url + "&page=" + str(i), callback=self.parse_page)

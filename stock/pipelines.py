@@ -19,6 +19,7 @@ class StockPipeline(object):
     def process_item(self, item, spider):
         print int(item['code']), item['date'], int(item['final_price']), int(item['highest_price']), int(item['lowest_price'])
         try:
+            #can we get better db schema?
             self.cursor.execute("""INSERT INTO stock_prices
             (code, date, final_price, highest_price, lowest_price, trading_volume)
                             VALUES (%s, %s, %s, %s, %s, %s)""",
