@@ -24,8 +24,8 @@ class stockSpider(scrapy.Spider):
             item = StockItem()
             item['code'] = '002900'
             item['date'] = l[0]
-            item['final_price']= l[1]
-            item['highest_price'] = l[4]
-            item['lowest_price']= l[5]
-            item['trading_volume'] = l[6]
+            item['final_price']= l[1].replace(",", "")
+            item['highest_price'] = l[4].replace(",", "")
+            item['lowest_price']= l[5].replace(",", "")
+            item['trading_volume'] = l[6].replace(",", "")
             yield item
