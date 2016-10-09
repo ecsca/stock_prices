@@ -20,6 +20,7 @@ class stockSpider(scrapy.Spider):
         url = self.base_url + code
         #TODO : if total page number is under 11?(no last_index)
         #TODO : Can we use url join?
+        #TODO : Can we parse only first page if db has old data?
         print url
         for i in range(1, last_index + 1) :
             yield scrapy.Request(url + "&page=" + str(i), callback=self.parse_page)
