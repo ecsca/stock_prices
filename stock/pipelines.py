@@ -19,8 +19,6 @@ class StockPipeline(object):
         self.collection = db[settings.MONGODB_COLLECTION]
 
     def process_item(self, item, spider):
-        print dict(item)
-        #self.collection.update(dict(item))
         self.collection.update({"code" : item['code'].encode('utf-8'), "date" : item['date'].encode('utf-8')},
                                { "$setOnInsert": {"final_price" : item["final_price"].encode("utf-8"),
                                                   "highest_price" : item["highest_price"].encode("utf-8"),
