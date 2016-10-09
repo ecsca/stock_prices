@@ -20,17 +20,18 @@ class stockSpider(scrapy.Spider):
         url = self.base_url + code
         #TODO : if total page number is under 11?(no last_index)
         #TODO : Can we use url join?
-        print last_index
+        print url
         for i in range(1, last_index + 1) :
             yield scrapy.Request(url + "&page=" + str(i), callback=self.parse_page)
 
     def parse_page(self, response):
         for sel in response.xpath('//tr') :
+            code = response.xpath('//td/a/@href').extract()[0].split("=")[-2].split("&")[0]
             l = sel.xpath('td/span/text()').extract()
             if (not l):
                 continue
             item = StockItem()
-            item['code'] = '002900'
+            item['code'] = code
             item['date'] = l[0]
             item['final_price']= l[1].replace(",", "")
             item['highest_price'] = l[4].replace(",", "")
