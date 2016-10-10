@@ -22,8 +22,12 @@ class stockSpider(scrapy.Spider):
         #TODO : Can we use url join?
         #TODO : Can we parse only first page if db has old data?
         print url
-        for i in range(1, last_index + 1) :
-            yield scrapy.Request(url + "&page=" + str(i), callback=self.parse_page)
+        collection = pymongo.MongoClient("localhost", 10001)["stock"]["stock_price"]
+        if (collection.find({"code" : code}).count() > 0):
+            yield scrapy.Request(url + "&page=1", callback=self.parse_page)
+        else:
+            for i in range(1, last_index + 1) :
+                yield scrapy.Request(url + "&page=" + str(i), callback=self.parse_page)
 
     def parse_page(self, response):
         for sel in response.xpath('//tr') :
