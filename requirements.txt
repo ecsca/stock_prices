@@ -16,7 +16,7 @@ Django==1.10
 duplicity==0.7.1
 enum34==1.1.6
 html5lib==0.999
-httplib2==0.9
+httplib2==0.18.0
 idna==2.1
 ipaddress==1.0.16
 lockfile==0.8
