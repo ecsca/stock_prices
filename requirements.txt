@@ -15,7 +15,7 @@ dirspec==13.10
 Django==1.10
 duplicity==0.7.1
 enum34==1.1.6
-html5lib==0.999
+html5lib==0.999999999
 httplib2==0.9
 idna==2.1
 ipaddress==1.0.16
